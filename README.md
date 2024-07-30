@@ -14,7 +14,7 @@ O script de instalação que acompanha no repositório é para a adição do `si
 # Instalação
 
 ```sh
-git clone https://github.com/adriankubinyete/px-siptracer.git
+git clone https://github.com/PhonevoxGroupTechnology/px-siptracer.git
 cd px-siptracer
 chmod +x install.sh
 ./install.sh # Instala o siptracer em seu PATH. Relogue sua sessão para utilizar.
