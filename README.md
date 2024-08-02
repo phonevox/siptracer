@@ -1,4 +1,4 @@
-# Phonevox: Siptracer (px-siptracer)
+# Siptracer
 
 **pt-BR**: Aplicação para geração de arquivos .pcap em segundo plano.<br>
 **en-US**: Application to generate .pcap files in the background.
@@ -14,8 +14,8 @@ O script de instalação que acompanha no repositório é para a adição do `si
 # Instalação
 
 ```sh
-git clone https://github.com/PhonevoxGroupTechnology/px-siptracer.git
-cd px-siptracer
+git clone https://github.com/phonevox/siptracer.git
+cd siptracer
 chmod +x install.sh
 ./install.sh # Instala o siptracer em seu PATH. Relogue sua sessão para utilizar.
 siptracer --help
