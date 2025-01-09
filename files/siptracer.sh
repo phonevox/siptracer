@@ -65,11 +65,44 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Checagem se o tcpdump está instalado
-if ! yum list installed tcpdump &> /dev/null; then
-    echo "tcpdump não está instalado."
+# Detecta o sistema operacional
+if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    OS=$ID
+else
+    echo "Sistema operacional não suportado."
     exit 1
 fi
+
+# Função para checar se o tcpdump está instalado no Debian
+check_tcpdump_debian() {
+    if ! dpkg -l | grep -q tcpdump; then
+        echo "tcpdump não está instalado."
+        exit 1
+    fi
+}
+
+# Função para checar se o tcpdump está instalado no CentOS/Rocky
+check_tcpdump_centos() {
+    if ! yum list installed tcpdump &> /dev/null; then
+        echo "tcpdump não está instalado."
+        exit 1
+    fi
+}
+
+# Verifica e executa a checagem conforme o sistema operacional
+case "$OS" in
+    debian|ubuntu)
+        check_tcpdump_debian
+        ;;
+    centos|rocky)
+        check_tcpdump_centos
+        ;;
+    *)
+        echo "Sistema operacional não suportado."
+        exit 1
+        ;;
+esac
 
 # Adiciona o timestamp ao nome do arquivo, se RESET_INTERVAL não for 0
 if [ "$RESET_INTERVAL" -ne 0 ]; then
